@@ -38,10 +38,10 @@ Verify Installation:
 
 
 Make changes to the script as needed
-Change the default user directory (username Admin to whatever is your windoww profile and chrome profile name on the line below)
+Change the default user directory (username Admin to whatever is your windows profile and chrome profile name on the line below)
       C:\Users\Admin\AppData\Local\Google\Chrome\User Data
 
-Change voice_message.mp3 to your recorded voice file and place it int he same directory as the script
+Change voice_message.mp3 to your recorded voice file and place it in the same directory as the script
 
 Execute your Python script, assuming it's named dial_script.py:
 
