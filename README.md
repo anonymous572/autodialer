@@ -1,6 +1,13 @@
 Install Python 3.9.13:
 
 Download and install Python 3.9.13 from Python Official Website.
+
+
+Install Chrome Driver that matches the version of Chrome you are using (tested on 120.0.6099.109)
+https://googlechromelabs.github.io/chrome-for-testing/
+copy chromedriver.exe into the same directory as the script 
+      dial_script.py, numbers.txt, and requirements.txt
+
 Open a Terminal/Command Prompt:
 On Windows: Press Win + R, type cmd, and press Enter.
 On macOS/Linux: Press Ctrl + Alt + T or use your preferred terminal.
