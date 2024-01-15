@@ -1,10 +1,14 @@
 Install Python 3.9.13:
 
-Download and install Python 3.9.13 from Python Official Website.
-
+Download and install Python 3.9.13 from 
+https://www.python.org/downloads/release/python-3913/  (windows 64 bit installer)
 
 Install Chrome Driver that matches the version of Chrome you are using (tested on 120.0.6099.109)
 https://googlechromelabs.github.io/chrome-for-testing/
+
+Check crhome version by goign to this address  
+      chrome://settings/help
+
 copy chromedriver.exe into the same directory as the script 
       dial_script.py, numbers.txt, and requirements.txt
 
