@@ -42,10 +42,26 @@ Make changes to the script as needed
 Change the default user directory (username Admin to whatever is your windows profile and chrome profile name on the line below)
       C:\Users\Admin\AppData\Local\Google\Chrome\User Data
 
-Change voice_message.mp3 to your recorded voice file and place it in the same directory as the script
+To Execute script
 
-Execute your Python script, assuming it's named dial_script.py:
+Open command line prompt or Bash on Linux by typing Command Prompt or CMD in start menu
+Browse to the script location using `cd C:\locationofdirectory` command
 
-      python dial_script.py
+1. 
+For automatically calling and speaking to the staff yourself (during in office hours)
+
+Execute Python script:
+      python autocall.py
+Note: This will leave 35 seconds for you to speak and leave your message after it automatically hangs up and calls next number: 
+      time.sleep(35) #Change This Value as needed for your speaking message length
+
+2. 
+For leaving a voicemail (during out of office hours)
+      Create a voice_message.mp3 of your recorded voice file and place it in the same directory as the script
+Execute Python script:
+      python leave_voicemail.py
+Note: This will leave 25 seconds as measured for the typical voice answering machine to finish, if needed to modify change the value here: 
+      time.sleep(25) #Change This Value to greater than average length of answering machine messages 
+
 
 Now you have a virtual environment using Python 3.9.13, the project requirements are installed, and you've run the code using the dial_script.py file.
