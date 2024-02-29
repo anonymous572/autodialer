@@ -51,19 +51,23 @@ Browse to the script location using `cd C:\locationofdirectory` command
 For automatically calling and speaking to the staff yourself (during in office hours)
 
 Execute Python script:
+
       python autocall.py
+      
 Note: This will leave 35 seconds for you to speak and leave your message after it automatically hangs up and calls next number: to change this edit the code:
 
-      `time.sleep(35) #Change This Value as needed for your speaking message length`
+      time.sleep(35) #Change This Value as needed for your speaking message length
 
 2. 
 For leaving a voicemail (during out of office hours)
       Create a voice_message.mp3 of your recorded voice file and place it in the same directory as the script
 Execute Python script:
+
       python leave_voicemail.py
+   
 Note: This will leave 25 seconds as measured for the typical voice answering machine to finish,  to change this edit the code:
 
-      `time.sleep(25) #Change This Value to greater than average length of answering machine messages `
+      time.sleep(25) #Change This Value to greater than average length of answering machine messages
 
 
 Now you have a virtual environment using Python 3.9.13, the project requirements are installed, and you've run the code using the dial_script.py file.
