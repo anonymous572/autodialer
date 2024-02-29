@@ -5,7 +5,7 @@ https://www.python.org/downloads/release/python-3913/  (windows 64 bit installer
 
 Install Chrome Driver that matches the version of Chrome you are using (tested on 122.0.6261.69)
 https://googlechromelabs.github.io/chrome-for-testing/
-For Windows use Win64 version (example download link: https://storage.googleapis.com/chrome-for-testing-public/122.0.6261.94/win64/chrome-win64.zip)
+For Windows use ChromeDriver Win64 version (example download link: https://storage.googleapis.com/chrome-for-testing-public/122.0.6261.94/win64/chromedriver-win64.zip)
 
 Check crhome version by goign to this address  
       chrome://settings/help
