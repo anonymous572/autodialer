@@ -5,7 +5,7 @@ import time
 import subprocess
 import re
 import undetected_chromedriver as webdriver
-
+import random
 import re
 
 import pygame
@@ -90,29 +90,56 @@ def google_voice_call(number):
 def loop_call():
     open_chrome()
 
-    number_pattern = re.compile(r'\b\d+\b')
+    number_pattern = re.compile(r'\b\d+\s+\d+\b')
 
     # Open the text file for reading
     with open("numbers.txt", 'r') as file:
         # Loop through each line in the file
         for line in file:
             # Find all matches of the number pattern in the line
-            matches = number_pattern.findall(line)
+            match = number_pattern.findall(line)[0]
 
-            # Print each matched number
-            for match in matches:
-                print(f"Number found: {match}")
-                try:
-                    if match is not None:
-                        print(f"Extracted number from filename: {match}")
-                        # Play the audio
-                        google_voice_call(match)
-                        time.sleep(35) #Change This Value as needed for your speaking message length
-                except:
-                    print("failed")
+            print(f"Number found: {match}")
+            try:
+                if match is not None:
+                    print(f"Extracted number from filename: {match}")
+                    # Play the audio
+                    google_voice_call(match)
+                    time.sleep(35) #Change This Value as needed for your speaking message length
+            except:
+                print("failed")
+
+def random_call():
+    open_chrome()
+
+    number_pattern = re.compile(r'\b\d+\s+\d+\b')
+    matches = []
+
+    # Open the text file for reading
+    with open("numbers.txt", 'r') as file:
+        # Loop through each line in the file
+        for line in file:
+            # Find all matches of the number pattern in the line
+            match = number_pattern.findall(line)
+            if match:
+                matches.append(match[0])
+
+    # Randomize the order of matches
+    random.shuffle(matches)
+
+    # Loop through the randomized matches
+    for match in matches:
+        print(f"Number found: {match}")
+        try:
+            if match is not None:
+                # Play the audio
+                google_voice_call(match)
+                time.sleep(30)  # Change This Value as needed for your speaking message length
+        except Exception as e:
+            print(f"Failed with error: {e}")
 
 def main():
-    loop_call()
+    random_call()
 
 if __name__ == "__main__":
     main()
