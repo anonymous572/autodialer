@@ -22,7 +22,7 @@ Navigate to Your Project Directory:
       cd path/to/your/project
 Create a Virtual Environment:
 
-      python3.9 -m venv venv
+      python -m venv venv
 
 On Windows:
 
@@ -52,7 +52,7 @@ For automatically calling and speaking to the staff yourself (during in office h
 
 Execute Python script:
 
-      python autocall.py
+      python auto_call.py
       
 Note: This will leave 35 seconds for you to speak and leave your message after it automatically hangs up and calls next number: to change this edit the code:
 
