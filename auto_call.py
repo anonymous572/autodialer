@@ -1,35 +1,28 @@
-
 import os
-
 import time
 import subprocess
 import re
 import undetected_chromedriver as webdriver
 import random
 import re
-
 import pygame
 
+    
 def open_chrome():
     global driver
-    subprocess.run("taskkill /f /im chrome.exe")
+    #try:
+    #    subprocess.run("taskkill /f /im chrome.exe", check=True, stdin=subprocess.DEVNULL)
+    #except:
+    #    print('no chrome processes open')
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.use_chromium = True  
     #chrome_options.add_argument('--disable-popup-blocking')  
 
-    chrome_options.add_argument(r'--user-data-dir=C:\Users\Admin\AppData\Local\Google\Chrome\User Data')
+    chrome_options.add_argument(r'--user-data-dir=' + os.getenv('LOCALAPPDATA') + r'\Google\Chrome\User Data')
     chrome_options.add_argument(r'--profile-directory=Default')
     
     driver = webdriver.Chrome(driver_executable_path="chromedriver.exe", use_subprocess=True, options=chrome_options)
-
-def extract_number_from_filename(filename):
-    # Extract numbers from the filename using regular expression
-    numbers = re.findall(r'\d+', filename)
-    if numbers:
-        return int(numbers[0])
-    else:
-        return None
 
 def play_audio(filename):
     pygame.init()
@@ -47,7 +40,6 @@ def google_voice_call(number):
     try:
         stop_xpath = '/html/body/div[1]/div[2]/gv-side-panel/mat-sidenav-container/mat-sidenav-content/div/div[2]/gv-call-sidebar/div/gv-in-call-ng2/section/div/div/div/gv-call-response/div/button'
         stop_element = driver.find_element("xpath", stop_xpath)
-        #stop_element = driver.find_elements_by_css_selector("[aria-label=XXXX]")
         driver.execute_script("arguments[0].click();", stop_element)
         time.sleep(5)
     except:
@@ -57,7 +49,6 @@ def google_voice_call(number):
     try:
         stop_xpath = '/html/body/div[1]/div[2]/gv-side-panel/mat-sidenav-container/mat-sidenav-content/div/div[2]/gv-call-sidebar/div/gv-in-call-ng2/section/div/div/div/gv-call-response/div/button'
         stop_element = driver.find_element("xpath", stop_xpath)
-        #stop_element = driver.find_elements_by_css_selector("[aria-label=XXXX]")
         driver.execute_script("arguments[0].click();", stop_element)
         time.sleep(5)
     except:
@@ -76,8 +67,6 @@ def google_voice_call(number):
         time.sleep(2)
         mynumber_element.send_keys(number)
 
-        #print('Element Text:', element_text)
-
         time.sleep(2)
         call_xpath = '/html/body/div[1]/div[2]/gv-side-panel/mat-sidenav-container/mat-sidenav-content/div/div[2]/gv-call-sidebar/div/gv-in-call-ng2/gv-make-call-panel/div/div[1]/button'
         callbtn_element = driver.find_element("xpath", call_xpath)
@@ -87,42 +76,23 @@ def google_voice_call(number):
             
     time.sleep(2)
 
-def loop_call():
-    open_chrome()
-
-    number_pattern = re.compile(r'\b\d+\s+\d+\b')
-
-    # Open the text file for reading
-    with open("numbers.txt", 'r') as file:
-        # Loop through each line in the file
-        for line in file:
-            # Find all matches of the number pattern in the line
-            match = number_pattern.findall(line)[0]
-
-            print(f"Number found: {match}")
-            try:
-                if match is not None:
-                    print(f"Extracted number from filename: {match}")
-                    # Play the audio
-                    google_voice_call(match)
-                    time.sleep(35) #Change This Value as needed for your speaking message length
-            except:
-                print("failed")
-
 def random_call():
     open_chrome()
 
-    number_pattern = re.compile(r'\b\d+\s+\d+\b')
     matches = []
 
     # Open the text file for reading
-    with open("numbers.txt", 'r') as file:
+    with open("numbers-zip.txt", 'r') as file:
         # Loop through each line in the file
         for line in file:
             # Find all matches of the number pattern in the line
-            match = number_pattern.findall(line)
-            if match:
-                matches.append(match[0])
+            match = re.sub(r'\D', '', line)
+            print(f"Number: {match}")
+            if match: 
+                match = match[:10] + " " + match[10:]
+                match = ''.join(match)
+                if len(match) > 9:
+                    matches.append(match)
 
     # Randomize the order of matches
     random.shuffle(matches)
@@ -133,7 +103,7 @@ def random_call():
         try:
             if match is not None:
                 # Play the audio
-                google_voice_call(match)
+                google_voice_call(match[:10])
                 time.sleep(30)  # Change This Value as needed for your speaking message length
         except Exception as e:
             print(f"Failed with error: {e}")
