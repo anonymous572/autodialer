@@ -82,7 +82,7 @@ def random_call():
     matches = []
 
     # Open the text file for reading
-    with open("numbers-zip.txt", 'r') as file:
+    with open("numbers.txt", 'r') as file:
         # Loop through each line in the file
         for line in file:
             # Find all matches of the number pattern in the line
@@ -99,7 +99,7 @@ def random_call():
 
     # Loop through the randomized matches
     for match in matches:
-        print(f"Number found: {match}")
+        print(f"Number found: {line}")
         try:
             if match is not None:
                 # Play the audio
